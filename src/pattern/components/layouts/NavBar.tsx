@@ -3,7 +3,7 @@ import logo from '../../../assets/react.svg'
 
 export const NavBar = () => {
     return (
-        <nav className="w-[10%] h-[100vh] bg-gray-800 text-white flex flex-col items-center gap-4">
+        <nav className="w-[200px] h-[100vh] sticky top-0 bg-gray-800 text-white flex flex-col items-center gap-4">
             <img className="w-20 h-20 pt-4" src={logo} alt="" />
             <ul className="flex flex-col items-center justify-center gap-4">
                 <li>

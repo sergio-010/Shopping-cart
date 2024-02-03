@@ -6,9 +6,8 @@ export interface Clothes {
   name?: string;
   title: string;
   price: number;
-  images: string[] ;
-  category?: string;
   description?: string;
+  images ?: string[];
 }
 
 
