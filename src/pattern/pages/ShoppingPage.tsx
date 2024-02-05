@@ -1,7 +1,7 @@
 // import { ProductCard } from "../components/ProductCard";
 import { NavBar } from "../components/layouts/NavBar";
 import { useProducts } from "../hooks/useProducts";
-import salchicha from "../assets/salchicha.jpg";
+
 
 export const ShoppingPage = () => {
     const { clothes } = useProducts();
@@ -18,14 +18,14 @@ export const ShoppingPage = () => {
                 </div>
             </div> */}
             <div className="ml-10 mt-10 marker: flex flex-row flex-wrap gap-8">
-                {clothes.map((ropa) => (
-                    <div className="w-[300px] h-[200px]" key={ropa.id}>
-                        <h2>{ropa.title}</h2>
-                        <p>{ropa.price}$</p>
+                {clothes.map((products) => (
+                    <div className="w-[300px] h-[200px]" key={products.id}>
+                        <h2>{products.title}</h2>
+                        <p>{products.price}$</p>
                         <img
                             className="w-20 h-[100px]"
-                            src={ropa.images && ropa.images.length > 0 ? ropa.images[0] : salchicha}
-                            alt={ropa.title}
+                            src={products.image}
+                            alt={products.title}
                         />
                     </div>
                 ))}

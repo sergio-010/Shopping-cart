@@ -1,35 +1,46 @@
-import { useEffect, useState } from "react";
-import { clothesApi } from "../api/userApi";
+import { useState } from "react";
+import { productsApi } from "../api/products";
+import { useQuery } from "@tanstack/react-query";
+
 
 export interface Clothes {
   id?: number;
   name?: string;
   title: string;
   price: number;
-  description?: string;
-  images ?: string[];
+  image? : string;
 }
-
 
 export const useProducts = () => {
   const [clothes, setClothes] = useState<Clothes[]>([]);
 
-  useEffect(() => {
-    getClothes();
-  }, []);
-
   const getClothes = async () => {
     try {
-      const res = await clothesApi.get<Clothes[]>(
-        "https://api.escuelajs.co/api/v1/products"
-      );
-      setClothes(res.data);
-    } catch (error) {
-      console.error("Error buscando Prendas", error);
-    }
-  };
+      const { data} = await productsApi.get<Clothes[]>(
+        "https://fakestoreapi.com/products"
+        );
+        setClothes(data);
+      } catch (error) {
+        console.error("Error buscando los productos", error);
+      }
+    };
+   
+ const products = useQuery<Clothes[], Error>(
+  ["productos"],
+  getClothes,
+  {
+    onError: (error: Error) => {
+      console.error("Error in useQuery", error);
+    },
+  }
+) as { data?: Clothes[]; isLoading: boolean; isError: boolean };
 
+
+ 
   return {
     clothes,
+    isLoading: products.isLoading,
+    isError: products.isError,
+
   };
 };
