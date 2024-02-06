@@ -1,18 +1,11 @@
-import { productsApi } from "../api/products";
+import { productsApi } from "../api/product";
 import { useQuery } from "@tanstack/react-query";
-import { Products } from "../interfaces/interface";
+import { Product } from "../interfaces/interface";
 
-const getClothes = async (): Promise<Products[]> => {
-  try {
-    const { data } = await productsApi.get<Products[]>("https://fakestoreapi.com/products");
-    console.log(data);
-    return data;
-  } catch (error) {
-    console.error("Error fetching clothes data:", error);
-    throw error;
-  }
+const getClothes = async (): Promise<Product[]> => {
+  const { data } = await productsApi.get("/products");
+  return data;
 };
-
 export const useProductos = () => {
   const productsQuery = useQuery({
   queryKey: ['clothes'],

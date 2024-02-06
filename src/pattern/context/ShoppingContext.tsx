@@ -1,9 +1,9 @@
 import { createContext } from 'react';
-import { ShoppingContextProps } from '../interfaces/interface';
+import { shoppingCartProps } from '../interfaces/interface';
 
 
 
-export const ShoppingContext = createContext<ShoppingContextProps>({} as ShoppingContextProps);
+export const ShoppingCartContext = createContext<shoppingCartProps>({} as shoppingCartProps);
 
 
 

@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { ShoppingContext } from "../context/ShoppingContext";
+import { shoppingCart } from "../context/shoppingCart";
 
 export const ButtonsCounter = () => {
-    const { incrementBy, counter } = useContext(ShoppingContext);
+    const { incrementBy, counter } = useContext(shoppingCart);
 
     return (
         <div className="w-full flex justify-center uppercase">

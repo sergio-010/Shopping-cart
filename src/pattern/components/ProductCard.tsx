@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { ButtonsCounter } from "./ButtomsCounter";
 import salchicha from "../assets/salchicha.jpg";
-import { ShoppingContext } from "../context/ShoppingContext";
+import { shoppingCart } from "../context/shoppingCart";
 
 export const ProductCard = () => {
 
-    const { products = [] } = useContext(ShoppingContext);
+    const { products = [] } = useContext(shoppingCart);
 
 
     return (

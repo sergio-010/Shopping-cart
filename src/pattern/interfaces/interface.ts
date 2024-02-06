@@ -4,11 +4,11 @@ import { ReactElement } from "react";
 export interface Props {
     children?: ReactElement | ReactElement[]
 }
-export interface ShoppingContextProps{
-    counter: number
-    incrementBy: (value: number) => void
+export interface shoppingCartProps{
+    products: Product[];
+    addToCart: (product: Product) => void
 }
-export interface Products {
+export interface Product {
   id: number;
   title?: string;
   price: number;
@@ -16,6 +16,7 @@ export interface Products {
   category?: Category;
   image?: string;
   rating?: Rating;
+  quantity?: number
 }
 
 export enum Category {
