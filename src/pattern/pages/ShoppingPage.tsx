@@ -1,31 +1,35 @@
-// import { ProductCard } from "../components/ProductCard";
 import { NavBar } from "../components/layouts/NavBar";
-import { useProducts } from "../hooks/useProducts";
-
+import { useProductos } from "../hooks/useProductos";
 
 export const ShoppingPage = () => {
-    const { clothes } = useProducts();
+    const { productsQuery } = useProductos();
+
+    if (productsQuery.isLoading) {
+        return <div>Loading...</div>;
+    }
+
+    if (productsQuery.isError) {
+        return <div>Error al cargar productos: {productsQuery.error.message}</div>;
+    }
+
+    if (!productsQuery.data) {
+        return <div>No hay datos disponibles</div>;
+    }
 
     return (
         <div className="flex">
             <div className="w-full">
                 <NavBar />
             </div>
-            {/* <div>
-                <h1 className="text-3xl w-28 uppercase h-4">Shopping</h1>
-                <div className="ml-10 mt-10 marker: flex flex-row flex-wrap gap-8">
-                    <ProductCard />
-                </div>
-            </div> */}
             <div className="ml-10 mt-10 marker: flex flex-row flex-wrap gap-8">
-                {clothes.map((products) => (
-                    <div className="w-[300px] h-[200px]" key={products.id}>
-                        <h2>{products.title}</h2>
-                        <p>{products.price}$</p>
+                {productsQuery.data.map((product) => (
+                    <div className="w-[300px] h-[200px]" key={product.id}>
+                        <h2>{product.title}</h2>
+                        <p>{product.price}$</p>
                         <img
                             className="w-20 h-[100px]"
-                            src={products.image}
-                            alt={products.title}
+                            src={product.image}
+                            alt={product.title}
                         />
                     </div>
                 ))}
