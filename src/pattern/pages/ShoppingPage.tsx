@@ -30,7 +30,7 @@ export const ShoppingPage = () => {
                                 onClick={() => addToCart(product)} >Add to cart</button>
                         </div>
                     ))
-                ) : <p>No hay productos</p>
+                ) : <p>No hay productoss</p>
                 }
             </div>
         </div>
