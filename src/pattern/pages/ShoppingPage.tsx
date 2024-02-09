@@ -3,11 +3,11 @@ import { NavBar } from "../components/layouts/NavBar";
 import { useProductos } from "../hooks/useProductos";
 import { ShoppingCartContext } from "../context/ShoppingContext";
 import { FaPlus } from "react-icons/fa";
-import { IoMdRemove } from "react-icons/io";
+
 
 
 export const ShoppingPage = () => {
-    const { addToCart, removeToCart } = useContext(ShoppingCartContext)
+    const { addToCart } = useContext(ShoppingCartContext)
     const { productsQuery } = useProductos();
 
     return (
@@ -25,12 +25,12 @@ export const ShoppingPage = () => {
                             <h2 className="text-lg font-semibold mb-2">{product.title}</h2>
                             <p className="text-gray-600">${product.price}</p>
                             <div className="flex justify-between items-center mt-4">
-                                <button className="bg-red-500 text-white px-4 py-2 rounded-md mr-2" onClick={() => addToCart(product)}>
+                                <button className="w-full flex items-center justify-center bg-red-500 text-white px-4 py-2 rounded-md" onClick={() => addToCart(product)}>
                                     <FaPlus className="mr-1" />
+                                    Agregar
                                 </button>
-                                <button className="bg-red-500 text-white px-4 py-2 rounded-md" onClick={() => removeToCart(product)}>
-                                    <IoMdRemove className="mr-1" />
-                                </button>
+
+
                             </div>
                         </div>
                     ))

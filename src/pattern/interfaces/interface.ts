@@ -8,6 +8,7 @@ export interface shoppingCartProps{
     products: Product[];
     addToCart: (product: Product) => void
     removeToCart: (product: Product) => void
+    handleUpdateQuantity: (product: Product, quantity: number) => void
 }
 export interface Product {
   id: number;

@@ -5,6 +5,7 @@ import { ShoppingCartContext } from './ShoppingContext';
 const initialValues: shoppingCartProps = {
     addToCart: () => { },
     removeToCart: () => { },
+    handleUpdateQuantity: () => { },
     products: []
 }
 
@@ -22,9 +23,16 @@ export const ShoppingProvider = ({ children }: { children: React.ReactNode }) =>
         const newProducts = shoppingCart.products.filter((item) => item.id !== product.id)
         setshoppingCart({ ...shoppingCart, products: newProducts })
     }
+    const handleUpdateQuantity = (product: Product, quantity: number) => {
+        const newProducts = shoppingCart.products.map((item) => {
+            if (item.id === product.id) return { ...item, quantity }
+            return item
+        })
+        setshoppingCart({ ...shoppingCart, products: newProducts })
+    }
 
     return (
-        <ShoppingCartContext.Provider value={{ ...shoppingCart, addToCart, removeToCart }}>
+        <ShoppingCartContext.Provider value={{ ...shoppingCart, addToCart, removeToCart, handleUpdateQuantity }}>
             {children}
         </ShoppingCartContext.Provider>
     )
