@@ -33,12 +33,14 @@ export const NavBar = () => {
                         <NavLink to='/' className='text-white hover:text-red-500'>POKEMONS</NavLink>
                     </li>
                     <li className='md:ml-8 md:my-0 my-7 font-semibold'>
-                        <button className='text-white hover:text-red-500' onClick={handleCartClick}>
-                            <div className="w-10 h-10 rounded-full flex items-center justify-center relative">
-                                <FaShoppingCart size={24} color="black" />
-                                <span className='w-4 h-4 bg-red-500 rounded-full text-white text-sm absolute -top-1 -right-1 flex justify-center items-center'>{shoppingCart.products.length}</span>
-                            </div>
-                        </button>
+                        {shoppingCart.products.length > 0 &&
+                            <button className='text-white hover:text-red-500' onClick={handleCartClick}>
+                                <div className="w-10 h-10 rounded-full flex items-center justify-center relative">
+                                    <FaShoppingCart size={24} color="black" />
+                                    <span className='w-4 h-4 bg-red-500 rounded-full text-white text-sm absolute -top-1 -right-1 flex justify-center items-center'>{shoppingCart.products.length}</span>
+                                </div>
+                            </button>
+                        }
                     </li>
                 </ul>
             </div>
