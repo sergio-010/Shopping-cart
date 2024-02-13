@@ -41,6 +41,7 @@ export const CartModal = ({ onClose }: CartModalProps) => {
                                 <button className="w-full flex items-center justify-center bg-green-500 text-white px-4 py-2 rounded-md" onClick={() => removeToCart(product)}>
                                     Remove
                                 </button>
+                                
                             </div>
                         ))}
                         <button onClick={onClose} className="bg-red-500 text-white px-4 pt-8 rounded-md">Close</button>
