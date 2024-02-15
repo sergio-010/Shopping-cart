@@ -20,7 +20,7 @@ export const NavBar = () => {
         <div className='w-full sticky top-0 left-0 '>
             <div className='items-center justify-between bg-slate-700 py-4 md:px-10 md:flex px-7'>
                 <div className='font-bold text-2xl cursor-pointer flex items-center gap-1'>
-                    <img src={logo} className='w-10 h-10' alt="Logo" />
+                    <NavLink to='/'><img src={logo} className='w-10 h-10' alt="Logo" /></NavLink>
                 </div>
 
                 <div onClick={() => setOpen(!open)} className='absolute right-8 top-6 cursor-pointer md:hidden w-7 h-7'>

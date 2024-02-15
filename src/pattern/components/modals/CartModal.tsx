@@ -21,11 +21,14 @@ export const CartModal = ({ onClose }: CartModalProps) => {
         }
     };
 
+    const total = products.reduce((acc, product) => acc + (product.quantity ?? 0) * product.price, 0);
+
     return (
         <>
             {products.length > 0 &&
                 <div className='w-[400px] h-calc(100vh-72px) p-4 fixed top-[72px] shadow animate-fade-down animate-duration-300 right-0 bg-blue-100 '>
                     <div className="flex flex-col h-full">
+                        <button onClick={onClose} className="bg-red-500 text-white px-4 pt-8 rounded-md">Close</button>
                         {products.map((product) => (
                             <div key={product.id}>
                                 <p className="text-lg font-semibold mb-2">{product.title}</p>
@@ -41,10 +44,10 @@ export const CartModal = ({ onClose }: CartModalProps) => {
                                 <button className="w-full flex items-center justify-center bg-green-500 text-white px-4 py-2 rounded-md" onClick={() => removeToCart(product)}>
                                     Remove
                                 </button>
-                                
+
                             </div>
                         ))}
-                        <button onClick={onClose} className="bg-red-500 text-white px-4 pt-8 rounded-md">Close</button>
+                        <span>Total: {total.toFixed(2)}</span>
                     </div>
                 </div>
             }
