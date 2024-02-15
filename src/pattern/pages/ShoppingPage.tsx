@@ -26,19 +26,19 @@ export const ShoppingPage = () => {
     return (
         <>
             <NavBar />
-            <div className="flex flex-col md:flex-row md:flex-wrap gap-8  mx-auto justify-center">
+            <div className="flex flex-col md:flex-row md:flex-wrap gap-8  mx-auto justify-center top-4">
                 {productsQuery.isLoading ? (
                     <p>Loading...</p>
                 ) : productsQuery.isError ? (
                     <p>Error: {productsQuery.error.message}</p>
                 ) : filterData && filterData.length > 0 ? (
                     filterData.map((product) => (
-                        <div className="w-[400px] mx-auto flex flex-col flex-wrap bg-white rounded-lg shadow-md p-4" key={product.id}>
+                        <div className="w-[400px] mx-auto flex flex-col flex-wrap bg-white  rounded-lg shadow-md p-4 mt-4" key={product.id}>
                             <img className="w-full h-[200px] object-contain mb-4 " src={product.image} alt={product.title} />
                             <h2 className="text-lg font-semibold mb-2">{product.title}</h2>
                             <p className="text-gray-600">${product.price}</p>
                             <div className="flex justify-between items-center mt-4">
-                                <button className="w-full flex items-center justify-center bg-red-500 text-white px-4 py-2 rounded-md" onClick={() => addToCart(product)}>
+                                <button className="w-full flex items-center justify-center bg-slate-500 text-white px-4 py-2 rounded-md" onClick={() => addToCart(product)}>
                                     <FaPlus className="mr-1" />
                                     Agregar
                                 </button>
