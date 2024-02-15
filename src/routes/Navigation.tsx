@@ -9,10 +9,7 @@ export const Navigation = () => {
 
             <Routes>
                 <Route path="/" element={<ShoppingPage />} />
-                <Route path="/pokemons" element={<h1>Pokemons</h1>} />
-                <Route path="/users" element={<h1>Users</h1>} />
                 <Route path="/*" element={<Navigate to="/" />} />
-
             </Routes>
         </BrowserRouter >
     )
