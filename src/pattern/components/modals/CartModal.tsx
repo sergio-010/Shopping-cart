@@ -10,6 +10,7 @@ interface CartModalProps {
 
 export const CartModal = ({ onClose }: CartModalProps) => {
     const { products, handleUpdateQuantity, removeToCart } = useContext(ShoppingCartContext);
+
     const onQuantityChange = (product: Product, change: number) => {
         const currentQuantity = product.quantity ?? 0;
         const newQuantity = currentQuantity + change;

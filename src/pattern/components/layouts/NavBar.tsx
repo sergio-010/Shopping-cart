@@ -34,6 +34,9 @@ export const NavBar = () => {
                         <NavLink to={`/?category=electronics`} className='text-white hover:text-red-500'>Electronics</NavLink>
                     </li>
                     <li className='md:ml-8 md:my-0 my-7 font-semibold'>
+                        <NavLink to={`/pr`} className='text-white hover:text-red-500'>perro</NavLink>
+                    </li>
+                    <li className='md:ml-8 md:my-0 my-7 font-semibold'>
                         {shoppingCart.products.length > 0 &&
                             <button className='text-white hover:text-red-500' onClick={handleCartClick}>
                                 <div className="w-10 h-10 rounded-full flex items-center justify-center relative">

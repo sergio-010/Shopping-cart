@@ -12,7 +12,7 @@ export const Navigation = () => {
                 <Routes>
                     <Route path="/" element={<ShoppingPage />} />
                     <Route path="/*" element={<Navigate to="/" />} />
-                    <Route path="/product/:id" element={<CardProduct />} />
+                    <Route path={`/product/${product.id}`} element={<CardProduct />} />
                 </Routes>
             </LayoutRoot>
         </BrowserRouter >
