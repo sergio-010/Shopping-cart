@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { NavBar } from './layouts/NavBar';
+import { Outlet } from 'react-router-dom';
 
 interface Props {
     children?: ReactNode;
@@ -7,9 +8,11 @@ interface Props {
 
 export const LayoutRoot = ({ children }: Props) => {
     return (
-        <div>
+        <>
             <NavBar />
+            <Outlet />
             {children}
-        </div>
+
+        </>
     );
 };

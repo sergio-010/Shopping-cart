@@ -1,33 +1,24 @@
 import { useContext, useState } from "react";
-import { NavBar } from "../components/layouts/NavBar";
 import { useProductos } from "../hooks/useProductos";
 import { ShoppingCartContext } from "../context/ShoppingContext";
 import { FaPlus } from "react-icons/fa";
 import { useFilteredProducts } from "../hooks/useParams";
-import { Product } from "../interfaces/interface";
+import { Link } from 'react-router-dom';
+
 
 export const ShoppingPage = () => {
     const { addToCart } = useContext(ShoppingCartContext);
     const { productsQuery } = useProductos();
     const { filterData } = useFilteredProducts();
     const [searchTerm, setSearchTerm] = useState("");
-    const [filteredProducts, setFilteredProducts] = useState<Product[]>(filterData);
 
-    const filterPrice = (type: 'max' | 'min') => {
-        if (filterData.length === 0) return;
-
-        const sortedProducts = type === 'max' ? filterData.sort((a, b) => b.price - a.price) : filterData.sort((a, b) => a.price - b.price);
-        setFilteredProducts([...sortedProducts]);
-    };
-
-    const returnNormal = () => {
-        setFilteredProducts([...filterData]);
-    };
+    const filteredProducts = filterData.filter(product =>
+        product.title?.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
     return (
         <>
-            <NavBar />
-            <div className="bg-gradient-to-b from-slate-50 to-slate-700 h-full">
+            <div className="bg-gradient-to-b from-slate-50 to-slate-700 h- ">
                 <div className="flex items-center justify-center p-4 ">
                     <input
                         type="text"
@@ -36,11 +27,6 @@ export const ShoppingPage = () => {
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
                     />
-                    <div className="flex gap-2">
-                        <button className="bg-black text-white px-4 py-2 rounded-md" onClick={() => filterPrice('max')}>Filtrar mayor precio</button >
-                        <button className="bg-black text-white px-4 py-2 rounded-md" onClick={() => filterPrice('min')}>Filtrar menor precio</button >
-                        <button className="bg-black text-white px-4 py-2 rounded-md" onClick={() => returnNormal()}>Limpiar</button>
-                    </div>
                 </div>
                 <div className="flex flex-col md:flex-row md:flex-wrap gap-8  mx-auto justify-center ">
 
@@ -51,7 +37,7 @@ export const ShoppingPage = () => {
                     ) : filteredProducts && filteredProducts.length > 0 ? (
                         filteredProducts.map((product) => (
                             <div className="w-[400px] mx-auto flex flex-col justify-between flex-wrap bg-gradient-to-b from-slate-50 to-slate-700 rounded-lg shadow-md p-4 border-black border-2" key={product.id}>
-                                <img className="w-[200px] h-[200px] object-contain mx-auto mb-4 rounded-[10px]" src={product.image} alt={product.title} />
+                                <Link to={`/product/${product.id}`}><img className="w-[200px] h-[200px] object-contain mx-auto mb-4 rounded-[10px]" src={product.image} alt={product.title} /></Link>
                                 <h2 className="text-lg font-semibold mb-2 text-white ">{product.title}</h2>
                                 <p className="text-black">${product.price}</p>
                                 <div className="flex justify-between items-end mt-4">
