@@ -11,17 +11,18 @@ export const ShoppingPage = () => {
     const { productsQuery } = useProductos();
     const { filterData } = useFilteredProducts();
     const [searchTerm, setSearchTerm] = useState("");
+    const [filteredProducts, setFilteredProducts] = useState<Product[]>(filterData);
 
-    const filteredProducts = filterData.filter(product =>
-        product.title?.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    const filterPrice = (type: 'max' | 'min') => {
+        if (filterData.length === 0) return;
 
-    const filterPrice = (products: Product[], type: 'max' | 'min') => {
-        if (products.length === 0) return;
-
-        const sortedProducts = type === 'max' ? products.sort((a, b) => b.price - a.price) : products.sort((a, b) => a.price - b.price);
-        addToCart(sortedProducts[0]);
+        const sortedProducts = type === 'max' ? filterData.sort((a, b) => b.price - a.price) : filterData.sort((a, b) => a.price - b.price);
+        setFilteredProducts([...sortedProducts]);
     };
+    const cleanFilter = () => {
+        setFilteredProducts([...filterData]);
+    };
+
     return (
         <>
             <NavBar />
@@ -33,10 +34,12 @@ export const ShoppingPage = () => {
                         className="border border-gray-300 rounded mx-auto w-[400px] p-2 placeholder:text-indigo-500 "
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-
                     />
-                    <button className="bg-black text-white px-4 py-2 rounded-md" onClick={() => filterPrice(productsQuery.data, 'max')}>Filtrar mayor precio</button >
-                    <button className="bg-black text-white px-4 py-2 rounded-md" onClick={() => filterPrice(productsQuery.data, 'min')}>Filtrar menor precio</button >
+                    <div className="flex gap-2">
+                        <button className="bg-black text-white px-4 py-2 rounded-md" onClick={() => filterPrice('max')}>Filtrar mayor precio</button >
+                        <button className="bg-black text-white px-4 py-2 rounded-md" onClick={() => filterPrice('min')}>Filtrar menor precio</button >
+                        <button className="bg-black text-white px-4 py-2 rounded-md" onClick={() => cleanFilter()}>Limpiar</button>
+                    </div>
                 </div>
                 <div className="flex flex-col md:flex-row md:flex-wrap gap-8  mx-auto justify-center ">
 
