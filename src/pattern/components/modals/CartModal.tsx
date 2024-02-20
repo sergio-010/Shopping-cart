@@ -28,11 +28,12 @@ export const CartModal = ({ onClose }: CartModalProps) => {
     return (
         <>
             {products.length > 0 &&
-                <div className='w-[400px] p-4 absolute top-[72px] shadow animate-fade-down animate-duration-300 right-0 backdrop-blur-sm '>
+                <div className='w-[400px] p-4 absolute top-[72px] shadow animate-fade-down animate-duration-300 right-0 backdrop-blur-sm overflow-y-auto '
+                    style={{ height: 'calc(100vh - 72px)' }}>
                     <div className="flex flex-col h-full overflow-auto">
                         <button onClick={onClose} className=" w-6 h-6  hover:text-red-500 text-black   rounded-md "><VscChromeClose className="w-6 h-6" /></button>
                         {products.map((product) => (
-                            <div key={product.id} className="overflow-y-auto">
+                            <div key={product.id} >
                                 <div className="w-full flex flex-col justify-between flex-wrap bg-gradient-to-b from-slate-50 to-slate-700 rounded-lg shadow-md p-4 border-black border-2 mb-9 mt-4 overflow-y-auto">
                                     <p className="text-lg font-semibold mb-2">{product.title}</p>
                                     <p className="text-black">{product.price}</p>
