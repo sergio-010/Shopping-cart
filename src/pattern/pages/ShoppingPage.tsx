@@ -19,7 +19,8 @@ export const ShoppingPage = () => {
         const sortedProducts = type === 'max' ? filterData.sort((a, b) => b.price - a.price) : filterData.sort((a, b) => a.price - b.price);
         setFilteredProducts([...sortedProducts]);
     };
-    const cleanFilter = () => {
+
+    const returnNormal = () => {
         setFilteredProducts([...filterData]);
     };
 
@@ -38,7 +39,7 @@ export const ShoppingPage = () => {
                     <div className="flex gap-2">
                         <button className="bg-black text-white px-4 py-2 rounded-md" onClick={() => filterPrice('max')}>Filtrar mayor precio</button >
                         <button className="bg-black text-white px-4 py-2 rounded-md" onClick={() => filterPrice('min')}>Filtrar menor precio</button >
-                        <button className="bg-black text-white px-4 py-2 rounded-md" onClick={() => cleanFilter()}>Limpiar</button>
+                        <button className="bg-black text-white px-4 py-2 rounded-md" onClick={() => returnNormal()}>Limpiar</button>
                     </div>
                 </div>
                 <div className="flex flex-col md:flex-row md:flex-wrap gap-8  mx-auto justify-center ">
