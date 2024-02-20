@@ -4,6 +4,7 @@ import { useProductos } from "../hooks/useProductos";
 import { ShoppingCartContext } from "../context/ShoppingContext";
 import { FaPlus } from "react-icons/fa";
 import { useFilteredProducts } from "../hooks/useParams";
+import { Product } from "../interfaces/interface";
 
 export const ShoppingPage = () => {
     const { addToCart } = useContext(ShoppingCartContext);
@@ -15,6 +16,12 @@ export const ShoppingPage = () => {
         product.title?.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    const filterPrice = (products: Product[], type: 'max' | 'min') => {
+        if (products.length === 0) return;
+
+        const sortedProducts = type === 'max' ? products.sort((a, b) => b.price - a.price) : products.sort((a, b) => a.price - b.price);
+        addToCart(sortedProducts[0]);
+    };
     return (
         <>
             <NavBar />
@@ -28,6 +35,8 @@ export const ShoppingPage = () => {
                         onChange={(e) => setSearchTerm(e.target.value)}
 
                     />
+                    <button className="bg-black text-white px-4 py-2 rounded-md" onClick={() => filterPrice(productsQuery.data, 'max')}>Filtrar mayor precio</button >
+                    <button className="bg-black text-white px-4 py-2 rounded-md" onClick={() => filterPrice(productsQuery.data, 'min')}>Filtrar menor precio</button >
                 </div>
                 <div className="flex flex-col md:flex-row md:flex-wrap gap-8  mx-auto justify-center ">
 
