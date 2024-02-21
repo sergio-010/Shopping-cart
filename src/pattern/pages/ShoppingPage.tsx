@@ -15,7 +15,6 @@ export const ShoppingPage = () => {
     const filteredProducts = filterData.filter(product =>
         product.title?.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
     return (
         <>
             <div className="bg-gradient-to-b from-slate-50 to-slate-700 h- ">
@@ -37,7 +36,8 @@ export const ShoppingPage = () => {
                     ) : filteredProducts && filteredProducts.length > 0 ? (
                         filteredProducts.map((product) => (
                             <div className="w-[400px] mx-auto flex flex-col justify-between flex-wrap bg-gradient-to-b from-slate-50 to-slate-700 rounded-lg shadow-md p-4 border-black border-2" key={product.id}>
-                                <Link to={`/product/${product.id}`}><img className="w-[200px] h-[200px] object-contain mx-auto mb-4 rounded-[10px]" src={product.image} alt={product.title} /></Link>
+                                <Link to={`/product/${product.id}`}><img className="w-[200px] h-[200px] object-contain mx-auto mb-4 rounded-[10px]"
+                                    src={product.image} alt={product.title} /></Link>
                                 <h2 className="text-lg font-semibold mb-2 text-white ">{product.title}</h2>
                                 <p className="text-black">${product.price}</p>
                                 <div className="flex justify-between items-end mt-4">

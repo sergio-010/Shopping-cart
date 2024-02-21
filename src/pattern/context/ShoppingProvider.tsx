@@ -9,7 +9,6 @@ const initialValues: shoppingCartProps = {
     products: []
 }
 
-
 export const ShoppingProvider = ({ children }: { children: React.ReactNode }) => {
     const [shoppingCart, setshoppingCart] = useState(initialValues)
     const addToCart = (product: Product) => {
