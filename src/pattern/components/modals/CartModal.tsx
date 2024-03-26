@@ -35,7 +35,7 @@ export const CartModal = ({ onClose }: CartModalProps) => {
                         <button onClick={onClose} className=" w-6 h-6  hover:text-red-500 text-black   rounded-md "><VscChromeClose className="w-6 h-6" /></button>
                         {products.map((product) => (
                             <div key={product.id} >
-                                <div className="w-full flex flex-col justify-between flex-wrap bg-gradient-to-b from-slate-50 to-slate-700 rounded-lg shadow-md p-4 border-black border-2 mb-9 mt-4 overflow-y-auto">
+                                <div className="w-full flex flex-col justify-between flex-wrap bg-gradient-to-b  rounded-lg shadow-md p-4 border-black border-2 mb-9 mt-4 overflow-y-auto bg-[#F6F6F6]">
                                     <p className="text-lg font-semibold mb-2">{product.title}</p>
                                     <p className="text-black">{product.price}</p>
                                     <p className="text-black">{product.quantity}</p>

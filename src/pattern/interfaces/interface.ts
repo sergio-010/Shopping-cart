@@ -9,6 +9,9 @@ export interface shoppingCartProps{
     addToCart: (product: Product) => void;
     removeToCart: (product: Product) => void;
     handleUpdateQuantity: (product: Product, quantity: number) => void;
+    favorites: Product[];
+    addFavorite: (product: Product) => void;
+    removeFavorite: (product: Product) => void
 }
 export interface Product {
   id: number;
@@ -19,6 +22,7 @@ export interface Product {
   image?: string;
   rating?: Rating;
   quantity?: number
+  favorite?: boolean
 }
 
 export enum Category {

@@ -6,7 +6,11 @@ const initialValues: shoppingCartProps = {
     addToCart: () => { },
     removeToCart: () => { },
     handleUpdateQuantity: () => { },
-    products: []
+    products: [],
+    addFavorite: () => { },
+    removeFavorite: () => { },
+    favorites: []
+
 }
 
 export const ShoppingProvider = ({ children }: { children: React.ReactNode }) => {
@@ -30,8 +34,19 @@ export const ShoppingProvider = ({ children }: { children: React.ReactNode }) =>
         setshoppingCart({ ...shoppingCart, products: newProducts })
     }
 
+    const addFavorite = (favorite: Product) => {
+        if (shoppingCart.favorites.some((item) => item.id === favorite.id)) return;
+        const newFavorites = [...shoppingCart.favorites, favorite];
+        setshoppingCart({ ...shoppingCart, favorites: newFavorites });
+    };
+
+    const removeFavorite = (favorite: Product) => {
+        const newFavorites = shoppingCart.favorites.filter((item) => item.id !== favorite.id);
+        setshoppingCart({ ...shoppingCart, favorites: newFavorites });
+    };
+
     return (
-        <ShoppingCartContext.Provider value={{ ...shoppingCart, addToCart, removeToCart, handleUpdateQuantity }}>
+        <ShoppingCartContext.Provider value={{ ...shoppingCart, addToCart, removeToCart, handleUpdateQuantity, addFavorite, removeFavorite }}>
             {children}
         </ShoppingCartContext.Provider>
     )
